@@ -1,44 +1,103 @@
 # Siemens SDET Technical Task
 
-✅ Automated UI tests using NightwatchJS (Page Object Model)  
-✅ Automated API tests with supertest & jest (next step)  
-✅ CI/CD pipeline with CircleCI.
+✅ Automated UI tests with NightwatchJS using Page Object Model (POM)  
+✅ API tests with Supertest & Jest  
+✅ CI/CD pipeline with CircleCI
 
-[![CircleCI](https://circleci.com/gh/gerges/siemens-sdet-task.svg?style=shield)](https://circleci.com/gh/gerges/siemens-sdet-task)
+[![CircleCI](https://circleci.com/gh/Gerges11/Seimens_Task.svg?style=shield)](https://app.circleci.com/pipelines/github/Gerges11/Seimens_Task)
 
-## Run tests locally
+
+## 🚀 How to run locally
+
+### UI tests
 ```bash
 npx nightwatch
-Project structure
-tests/ - UI tests
-
-nightwatch/page-objects/ - POM files
-
-upload/ - Test file for upload
-
-tests_output/ - HTML reports
-
+API tests
+bash
+Copy
+Edit
+npx jest
+📁 Project structure
+bash
+Copy
+Edit
+.
+├── tests/                   # Nightwatch UI tests
+├── nightwatch/              # Page objects
+├── upload/                  # Test file for upload
+├── tests_output/            # Nightwatch HTML reports
+├── api-tests/               # Jest + Supertest API tests
+├── .circleci/config.yml     # CI/CD pipeline
+├── README.md
 yaml
 Copy
 Edit
 
----
-
-## ⚙️ 4️⃣ CircleCI config
-I’ll prepare `config.yml` for you to:
-
-- Run UI tests
-- Then API tests
+✅ **Replace** `YOUR-GITHUB-USERNAME` and `YOUR-REPO-NAME` with your actual GitHub info so the badge works.
 
 ---
 
-# ✅ Next:
-👉 Tell me:
+## ✅ 2️⃣ Let’s write your `.circleci/config.yml`
+Create a folder `.circleci` in your project, inside it a file `config.yml`.
 
-✅ **“Yes, prepare the Word test cases & bug report for me”**  
-and I’ll create the `.docx` files for you right now.
+Put this inside:
 
-Then we’ll tackle:
-✅ CircleCI + README badge.  
+```yaml
+version: 2.1
 
-Ready? 💪
+jobs:
+  ui_tests:
+    docker:
+      - image: cypress/browsers:node16.5.0-chrome91-ff89
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: npm install
+      - run:
+          name: Run Nightwatch UI tests
+          command: npx nightwatch
+
+  api_tests:
+    docker:
+      - image: node:16
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: npm install
+      - run:
+          name: Run Jest API tests
+          command: npx jest --ci
+
+workflows:
+  version: 2
+  test_pipeline:
+    jobs:
+      - ui_tests
+      - api_tests:
+          requires:
+            - ui_tests
+✅ This:
+
+Runs ui_tests first (Nightwatch in a Chrome container).
+
+Then runs api_tests (Jest + Supertest).
+
+✅ 3️⃣ Now push to GitHub
+bash
+Copy
+Edit
+git add .
+git commit -m "Add CircleCI config, README, test cases and bug report docs"
+git push origin main
+✅ Go to CircleCI, add your repo, and it will automatically trigger the pipeline.
+
+✅ Shall we prepare your API tests next?
+They’ll use supertest + jest to hit mock-user-auth endpoints with:
+
+Valid body + auth
+
+Invalid body + auth
+
+Check responses
