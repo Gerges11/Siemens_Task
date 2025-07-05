@@ -1,0 +1,23 @@
+version: 2.1
+jobs:
+  build-and-test:
+    docker:
+      - image: cimg/node:20.12.2 # Specify a Node.js image for your environment
+
+    steps:
+      - checkout # Checkout your repository code
+
+      - run:
+          name: "Install Node.js Dependencies"
+          command: |
+            # Change directory into your 'my-nightwatch-project'
+            # Assuming this folder is at the root of your GitHub repository
+            cd my-nightwatch-project
+            npm install # Install dependencies based on package.json inside my-nightwatch-project
+
+      - run:
+          name: "Run Nightwatch/Jest Tests"
+          command: |
+            # Change directory into your 'my-nightwatch-project' again for tests
+            cd my-nightwatch-project
+            npx jest api-tests/auth.test.js # Run your specific Jest test file
