@@ -20,6 +20,9 @@ jobs:
       - run:
           name: Run Nightwatch/Jest tests
           command: npx jest api-tests/auth.test.js
+      - run:
+          name: Run Nightwatch tests
+          command: npx nightwatch tests/nightwatch-tests/
 
 workflows:
   build-and-test-workflow:
