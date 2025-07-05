@@ -1,23 +1,23 @@
-version: 2.1
-jobs:
-  build-and-test:
+version: 2.1 # Specifies the CircleCI config version
+jobs:        # Defines the individual build steps
+  build-and-test: # This is the name of your job
     docker:
-      - image: cimg/node:20.12.2 # Specify a Node.js image for your environment
+      - image: cimg/node:20.12.2 # The environment where your job runs
 
     steps:
-      - checkout # Checkout your repository code
-
+      - checkout
       - run:
           name: "Install Node.js Dependencies"
           command: |
-            # Change directory into your 'my-nightwatch-project'
-            # Assuming this folder is at the root of your GitHub repository
             cd my-nightwatch-project
-            npm install # Install dependencies based on package.json inside my-nightwatch-project
-
+            npm install
       - run:
           name: "Run Nightwatch/Jest Tests"
           command: |
-            # Change directory into your 'my-nightwatch-project' again for tests
             cd my-nightwatch-project
-            npx jest api-tests/auth.test.js # Run your specific Jest test file
+            npx jest api-tests/auth.test.js
+
+workflows: # Defines how your jobs are orchestrated
+  build-and-test-workflow: # This is the name of your workflow
+    jobs:
+      - build-and-test # This tells the workflow to run the 'build-and-test' job
