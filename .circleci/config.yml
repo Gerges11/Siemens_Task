@@ -9,6 +9,12 @@ jobs:
       - checkout
 
       - run:
+          name: Install Google Chrome
+          command: |
+            sudo apt update
+            sudo apt install -y google-chrome-stable
+
+      - run:
           name: Install Node.js dependencies
           working_directory: ~/project/my-nightwatch-project
           command: npm ci
