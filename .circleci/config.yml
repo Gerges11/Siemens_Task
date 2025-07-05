@@ -17,11 +17,10 @@ jobs:
           name: "Run Nightwatch/Jest Tests"
           command: |
             cd my-nightwatch-project
-            # CHANGE THIS LINE: Use npm exec instead of npx for better compatibility
-            npm exec jest -- api-tests/auth.test.js # Executes your Jest tests
+            # CHANGE THIS LINE: Use the direct path to the Jest executable
+            ./node_modules/.bin/jest api-tests/auth.test.js # Executes your Jest tests
 
 workflows:
   build-and-test-workflow:
     jobs:
       - build-and-test
-      
