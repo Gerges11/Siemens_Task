@@ -33,14 +33,9 @@ yaml
 Copy
 Edit
 
-✅ **Replace** `YOUR-GITHUB-USERNAME` and `YOUR-REPO-NAME` with your actual GitHub info so the badge works.
 
 ---
 
-## ✅ 2️⃣ Let’s write your `.circleci/config.yml`
-Create a folder `.circleci` in your project, inside it a file `config.yml`.
-
-Put this inside:
 
 ```yaml
 version: 2.1
@@ -91,9 +86,9 @@ Edit
 git add .
 git commit -m "Add CircleCI config, README, test cases and bug report docs"
 git push origin main
-✅ Go to CircleCI, add your repo, and it will automatically trigger the pipeline.
 
-✅ Shall we prepare your API tests next?
+
+
 They’ll use supertest + jest to hit mock-user-auth endpoints with:
 
 Valid body + auth
