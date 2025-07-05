@@ -3,16 +3,26 @@ version: 2.1
 executors:
   node-executor:
     docker:
-      - image: cimg/node:20.2.0 # You can change to your preferred Node version
+      - image: cimg/node:20.2.0
     working_directory: ~/project
 
 jobs:
+  install-deps:
+    executor: node-executor
+    steps:
+      - checkout
+      - run: sudo apt update
+      - run: sudo apt install -y google-chrome-stable
+      - run: npm install
+
   ui-tests:
     executor: node-executor
     steps:
       - checkout
+      - run: sudo apt update
+      - run: sudo apt install -y google-chrome-stable
       - run: npm install
-      - run: npx nightwatch
+      - run: npx nightwatch --headless
       - store_artifacts:
           path: tests_output
           destination: ui-test-results
@@ -31,5 +41,10 @@ workflows:
   version: 2
   test-and-deploy:
     jobs:
-      - ui-tests
-      - api-tests
+      - install-deps
+      - ui-tests:
+          requires:
+            - install-deps
+      - api-tests:
+          requires:
+            - install-deps
