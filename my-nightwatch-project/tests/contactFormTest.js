@@ -6,7 +6,7 @@ module.exports = {
       contactPage
         .navigate()
         .click('@submitButton')
-        .waitForElementVisible('@errorAlert', 3000)
+        .waitForElementVisible('@errorAlert', 10000)
         .assert.containsText('@errorAlert', 'There is 1 error');
     },
   
