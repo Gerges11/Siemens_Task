@@ -1,24 +1,25 @@
 version: 2.1
+
 jobs:
   build-and-test:
     docker:
-      - image: cimg/node:20.12.2 # Use a Node.js image suitable for your project
+      - image: cimg/node:20.12.2
 
     steps:
-      - checkout # This step checks out your code from GitHub
+      - checkout # gets your repo code
 
       - run:
-          name: "Install Node.js Dependencies"
+          name: Install Node.js dependencies
           command: |
-            cd my-nightwatch-project
-            npm install
+            npm ci
 
       - run:
-          name: "Run Nightwatch/Jest Tests"
-          command: |
-            cd my-nightwatch-project
-            # CHANGE THIS LINE: Use the direct path to the Jest executable
-            ./node_modules/.bin/jest api-tests/auth.test.js # Executes your Jest tests
+          name: Fix bin permissions
+          command: chmod -R +x ./node_modules/.bin
+
+      - run:
+          name: Run Nightwatch/Jest tests
+          command: npx jest api-tests/auth.test.js
 
 workflows:
   build-and-test-workflow:
