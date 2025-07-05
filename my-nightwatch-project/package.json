@@ -1,0 +1,22 @@
+{
+  "name": "my-nightwatch-project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "your-development-server-command-here"
+  },
+  
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@nightwatch/mobile-helper": "^2.0.0",
+    "chromedriver": "^137.0.4",
+    "jest-html-reporter": "^4.3.0",
+    "mock-user-auth": "^1.0.15",
+    "nightwatch": "^3.12.2"
+  }
+}
