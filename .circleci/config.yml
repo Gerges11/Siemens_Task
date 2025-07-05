@@ -10,18 +10,22 @@ jobs:
 
       - run:
           name: Install Node.js dependencies
-          command: |
-            npm ci
+          working_directory: ~/project/my-nightwatch-project
+          command: npm ci
 
       - run:
           name: Fix bin permissions
+          working_directory: ~/project/my-nightwatch-project
           command: chmod -R +x ./node_modules/.bin
 
       - run:
-          name: Run Nightwatch/Jest tests
+          name: Run Jest tests
+          working_directory: ~/project/my-nightwatch-project
           command: npx jest api-tests/auth.test.js
+
       - run:
           name: Run Nightwatch tests
+          working_directory: ~/project/my-nightwatch-project
           command: npx nightwatch tests/nightwatch-tests/
 
 workflows:
