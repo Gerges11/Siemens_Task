@@ -11,16 +11,26 @@ jobs:
     executor: node-executor
     steps:
       - checkout
-      - run: sudo apt update
-      - run: sudo apt install -y google-chrome-stable
+      - run: |
+          sudo apt update
+          sudo apt install -y wget gnupg
+          wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+          echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list
+          sudo apt update
+          sudo apt install -y google-chrome-stable
       - run: npm install
 
   ui-tests:
     executor: node-executor
     steps:
       - checkout
-      - run: sudo apt update
-      - run: sudo apt install -y google-chrome-stable
+      - run: |
+          sudo apt update
+          sudo apt install -y wget gnupg
+          wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+          echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list
+          sudo apt update
+          sudo apt install -y google-chrome-stable
       - run: npm install
       - run: npx nightwatch --headless
       - store_artifacts:
