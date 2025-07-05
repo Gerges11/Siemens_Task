@@ -7,6 +7,24 @@
 [![CircleCI](https://circleci.com/gh/Gerges11/Seimens_Task.svg?style=shield)](https://app.circleci.com/pipelines/github/Gerges11/Seimens_Task)
 
 
+## ✨ Features
+
+### 🔎 UI Testing
+- Contact Us page:
+  - Required fields, file upload, success validation
+- Search functionality:
+  - Searches for 'dress' and verifies results
+- Page Object Model implemented (no hardcoded selectors)
+- HTML reports available under `/tests_output/nightwatch-html-report`
+
+### 🧪 API Testing
+- Validates `/register` and `/login` endpoints
+- Tests both positive and negative scenarios
+- HTML report available under `/tests_output/api-test-report.html`
+
+---
+
+
 ## 🚀 How to run locally
 
 ### UI tests
