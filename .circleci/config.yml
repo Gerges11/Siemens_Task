@@ -1,0 +1,34 @@
+version: 2.1
+
+jobs:
+  build-and-test:
+    docker:
+      - image: cimg/node:20.12.2
+
+    steps:
+      - checkout # gets your repo code
+
+      - run:
+          name: Install Node.js dependencies
+          working_directory: ~/project/my-nightwatch-project
+          command: npm ci
+
+      - run:
+          name: Fix bin permissions
+          working_directory: ~/project/my-nightwatch-project
+          command: chmod -R +x ./node_modules/.bin
+
+      - run:
+          name: Run Jest tests
+          working_directory: ~/project/my-nightwatch-project
+          command: npx jest api-tests/auth.test.js
+
+      - run:
+          name: Run Nightwatch tests
+          working_directory: ~/project/my-nightwatch-project
+          command: npx nightwatch tests/nightwatch-tests/
+
+workflows:
+  build-and-test-workflow:
+    jobs:
+      - build-and-test
