@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build-and-test:
     docker:
-      - image: cimg/node:20.12.2 # This image provides Node.js and npm
+      - image: cimg/node:20.12.2 # Use a Node.js image suitable for your project
 
     steps:
       - checkout # This step checks out your code from GitHub
