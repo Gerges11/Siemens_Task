@@ -6,7 +6,7 @@ jobs:
       - image: cimg/node:20.12.2
 
     steps:
-      - checkout # gets your repo code
+      - checkout
 
       - run:
           name: Install Node.js dependencies
@@ -26,7 +26,7 @@ jobs:
       - run:
           name: Run Nightwatch tests
           working_directory: ~/project/my-nightwatch-project
-          command: npx nightwatch tests/nightwatch-tests/
+          command: npx nightwatch tests/
 
 workflows:
   build-and-test-workflow:
