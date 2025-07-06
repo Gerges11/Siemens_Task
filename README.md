@@ -4,7 +4,7 @@
 ✅ API tests with Supertest & Jest  
 ✅ CI/CD pipeline with CircleCI
 
-[![CircleCI](https://app.circleci.com/pipelines/circleci/LDvYkPuF7vKQopersecfHx)](https://app.circleci.com/pipelines/circleci/LDvYkPuF7vKQopersecfHx)
+[![CircleCI](https://app.circleci.com/pipelines/github/Gerges11/Siemens_Task)](https://app.circleci.com/pipelines/github/Gerges11/Siemens_Task)
 
 
 ## ✨ Features
